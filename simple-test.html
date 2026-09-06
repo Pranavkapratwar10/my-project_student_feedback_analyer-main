@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Analyzer - Test Interface</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        .status {
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .warning {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        .upload-area {
+            border: 3px dashed #007bff;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+        }
+        .upload-area:hover {
+            border-color: #0056b3;
+            background-color: #f8f9ff;
+        }
+        .upload-area.dragover {
+            border-color: #28a745;
+            background-color: #f0fff4;
+        }
+        input[type="file"] {
+            margin: 15px 0;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            width: 300px;
+        }
+        button {
+            background: linear-gradient(45deg, #007bff, #0056b3);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,123,255,0.3);
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,123,255,0.4);
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        .btn-secondary {
+            background: linear-gradient(45deg, #6c757d, #495057);
+        }
+        .btn-success {
+            background: linear-gradient(45deg, #28a745, #1e7e34);
+        }
+        .results {
+            margin-top: 20px;
+            padding: 25px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 10px;
+            border-left: 5px solid #007bff;
+        }
+        .progress {
+            width: 100%;
+            height: 20px;
+            background-color: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(45deg, #007bff, #0056b3);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        .api-test {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #f1f3f4;
+            border-radius: 10px;
+        }
+        .endpoint-test {
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            border-left: 4px solid #007bff;
+        }
+        .sample-data {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #e3f2fd;
+            border-radius: 8px;
+            border-left: 4px solid #2196f3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎓 Student Feedback Analyzer</h1>
+        
+        <div id="status" class="status warning">
+            🔄 Testing backend connection...
+        </div>
+
+        <!-- API Testing Section -->
+        <div class="api-test">
+            <h3>🔧 API Testing</h3>
+            <div class="endpoint-test">
+                <button onclick="testHealth()" id="healthBtn">Test Health Endpoint</button>
+                <button onclick="testAllEndpoints()" id="testAllBtn">Test All Endpoints</button>
+                <button onclick="createSampleData()" id="sampleBtn" class="btn-secondary">Create Sample CSV</button>
+            </div>
+        </div>
+
+        <!-- File Upload Section -->
+        <div class="upload-area" id="uploadArea">
+            <h3>📁 Upload Feedback File</h3>
+            <p>Select or drag & drop a CSV, XLSX, XLS, or TSV file containing student feedback</p>
+            <input type="file" id="fileInput" accept=".csv,.xlsx,.xls,.tsv">
+            <br><br>
+            <button onclick="analyzeFile()" id="analyzeBtn" class="btn-success">🔍 Analyze Feedback</button>
+            <div id="progress" class="progress" style="display: none;">
+                <div id="progressBar" class="progress-bar"></div>
+            </div>
+        </div>
+
+        <!-- Sample Data Info -->
+        <div class="sample-data">
+            <h4>📋 Sample Data Format</h4>
+            <p>Your CSV file should have a column named "Feedback" with student feedback text. Example:</p>
+            <code>Student_ID,Feedback<br>
+            S001,"The professor explains concepts very clearly"<br>
+            S002,"Need more practical examples in class"</code>
+        </div>
+
+        <!-- Results Section -->
+        <div id="results" class="results" style="display: none;">
+            <h3>📊 Analysis Results</h3>
+            <div id="resultsContent"></div>
+        </div>
+
+        <!-- API Response Section -->
+        <div id="apiResults" class="results" style="display: none;">
+            <h3>🔍 API Test Results</h3>
+            <div id="apiContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let backendUrl = 'http://localhost:5002';
+        let isConnected = false;
+
+        // Test backend connection on page load
+        window.onload = function() {
+            testConnection();
+            setupDragAndDrop();
+        };
+
+        // Setup drag and drop functionality
+        function setupDragAndDrop() {
+            const uploadArea = document.getElementById('uploadArea');
+            const fileInput = document.getElementById('fileInput');
+
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.classList.add('dragover');
+            });
+
+            uploadArea.addEventListener('dragleave', () => {
+                uploadArea.classList.remove('dragover');
+            });
+
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.classList.remove('dragover');
+                const files = e.dataTransfer.files;
+                if (files.length > 0) {
+                    fileInput.files = files;
+                    showStatus(`File selected: ${files[0].name}`, 'success');
+                }
+            });
+        }
+
+        // Show status messages
+        function showStatus(message, type = 'success') {
+            const statusDiv = document.getElementById('status');
+            statusDiv.innerHTML = message;
+            statusDiv.className = `status ${type}`;
+        }
+
+        // Test backend connection
+        async function testConnection() {
+            try {
+                showStatus('🔄 Testing backend connection...', 'warning');
+                const response = await fetch(`${backendUrl}/api/health`);
+                const data = await response.json();
+                
+                if (data.status === 'ok') {
+                    isConnected = true;
+                    showStatus(`✅ Backend Server: Connected (${backendUrl})`, 'success');
+                } else {
+                    throw new Error('Backend not responding correctly');
+                }
+            } catch (error) {
+                isConnected = false;
+                showStatus(`❌ Backend Server: Connection Failed - ${error.message}`, 'error');
+            }
+        }
+
+        // Test health endpoint specifically
+        async function testHealth() {
+            const btn = document.getElementById('healthBtn');
+            btn.disabled = true;
+            btn.textContent = 'Testing...';
+
+            try {
+                const response = await fetch(`${backendUrl}/api/health`);
+                const data = await response.json();
+                
+                showApiResults('Health Check', data, response.status);
+                showStatus('✅ Health check completed', 'success');
+            } catch (error) {
+                showApiResults('Health Check', {error: error.message}, 'error');
+                showStatus('❌ Health check failed', 'error');
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Test Health Endpoint';
+            }
+        }
+
+        // Test all endpoints
+        async function testAllEndpoints() {
+            const btn = document.getElementById('testAllBtn');
+            btn.disabled = true;
+            btn.textContent = 'Testing All...';
+
+            const endpoints = [
+                {name: 'Health', url: '/api/health', method: 'GET'},
+                {name: 'Test Read', url: '/api/test-read-analyzed', method: 'GET'}
+            ];
+
+            let results = {};
+            
+            for (let endpoint of endpoints) {
+                try {
+                    const response = await fetch(`${backendUrl}${endpoint.url}`, {
+                        method: endpoint.method
+                    });
+                    const data = await response.json();
+                    results[endpoint.name] = {status: response.status, data: data};
+                } catch (error) {
+                    results[endpoint.name] = {status: 'error', data: {error: error.message}};
+                }
+            }
+
+            showApiResults('All Endpoints Test', results);
+            showStatus('✅ All endpoint tests completed', 'success');
+            
+            btn.disabled = false;
+            btn.textContent = 'Test All Endpoints';
+        }
+
+        // Create sample CSV data
+        function createSampleData() {
+            const sampleData = `Student_ID,Feedback
+S001,"The professor explains concepts very clearly and makes the subject interesting"
+S002,"Need more practical examples in class to understand better"
+S003,"Great course! Very helpful and well organized"
+S004,"The assignments are too difficult and not well explained"
+S005,"Excellent teaching style, very engaging lectures"
+S006,"Could use more interactive sessions and group work"
+S007,"The course material is outdated and needs updating"
+S008,"Professor is very knowledgeable and helpful during office hours"
+S009,"Too much homework, not enough time to complete everything"
+S010,"Love this class! Best professor I've had so far"`;
+
+            const blob = new Blob([sampleData], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'sample_feedback.csv';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+            
+            showStatus('✅ Sample CSV file downloaded! Use it to test the analyzer', 'success');
+        }
+
+        // Show API results
+        function showApiResults(title, data, status = null) {
+            const resultsDiv = document.getElementById('apiResults');
+            const contentDiv = document.getElementById('apiContent');
+            
+            let html = `<h4>🔍 ${title}</h4>`;
+            if (status) {
+                html += `<p><strong>Status:</strong> ${status}</p>`;
+            }
+            html += `<pre style="background: #f8f9fa; padding: 15px; border-radius: 5px; overflow-x: auto; font-size: 12px;">${JSON.stringify(data, null, 2)}</pre>`;
+            
+            contentDiv.innerHTML = html;
+            resultsDiv.style.display = 'block';
+        }
+
+        // Show progress bar
+        function showProgress(percent) {
+            const progressDiv = document.getElementById('progress');
+            const progressBar = document.getElementById('progressBar');
+            
+            progressDiv.style.display = 'block';
+            progressBar.style.width = percent + '%';
+            
+            if (percent >= 100) {
+                setTimeout(() => {
+                    progressDiv.style.display = 'none';
+                    progressBar.style.width = '0%';
+                }, 2000);
+            }
+        }
+
+        // Analyze file function
+        async function analyzeFile() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                showStatus('❌ Please select a file first', 'error');
+                return;
+            }
+
+            if (!isConnected) {
+                showStatus('❌ Backend server is not connected. Please check the connection first.', 'error');
+                return;
+            }
+
+            const analyzeBtn = document.getElementById('analyzeBtn');
+            analyzeBtn.disabled = true;
+            analyzeBtn.textContent = '🔄 Analyzing...';
+            
+            showProgress(10);
+            showStatus('🔄 Uploading file...', 'warning');
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            try {
+                showProgress(30);
+                const response = await fetch(`${backendUrl}/api/analyze-feedback`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                showProgress(70);
+                const result = await response.json();
+                
+                if (response.ok) {
+                    showProgress(100);
+                    displayResults(result);
+                    showStatus('✅ Analysis completed successfully!', 'success');
+                } else {
+                    throw new Error(result.error || `Server error: ${response.status}`);
+                }
+            } catch (error) {
+                showStatus(`❌ Analysis failed: ${error.message}`, 'error');
+                showApiResults('Analysis Error', {error: error.message, file: file.name});
+            } finally {
+                analyzeBtn.disabled = false;
+                analyzeBtn.textContent = '🔍 Analyze Feedback';
+                showProgress(0);
+            }
+        }
+
+        // Display analysis results
+        function displayResults(data) {
+            const resultsDiv = document.getElementById('results');
+            const contentDiv = document.getElementById('resultsContent');
+            
+            let html = `
+                <h4>📊 Analysis Summary</h4>
+                <div style="background: white; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                    <p><strong>Status:</strong> <span style="color: green;">${data.status}</span></p>
+                    <p><strong>Summary:</strong> ${data.summary || 'Analysis completed successfully'}</p>
+                </div>
+                
+                <h4>📈 Statistics</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 15px 0;">
+                    <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; text-align: center;">
+                        <strong style="font-size: 24px; color: #1976d2;">${data.stats?.total || 0}</strong>
+                        <br>Total Feedback
+                    </div>
+                    <div style="background: #e8f5e8; padding: 15px; border-radius: 8px; text-align: center;">
+                        <strong style="font-size: 24px; color: #388e3c;">${data.stats?.positive || 0}</strong>
+                        <br>Positive
+                    </div>
+                    <div style="background: #fff3e0; padding: 15px; border-radius: 8px; text-align: center;">
+                        <strong style="font-size: 24px; color: #f57c00;">${data.stats?.neutral || 0}</strong>
+                        <br>Neutral
+                    </div>
+                    <div style="background: #ffebee; padding: 15px; border-radius: 8px; text-align: center;">
+                        <strong style="font-size: 24px; color: #d32f2f;">${data.stats?.negative || 0}</strong>
+                        <br>Negative
+                    </div>
+                    <div style="background: #fce4ec; padding: 15px; border-radius: 8px; text-align: center;">
+                        <strong style="font-size: 24px; color: #c2185b;">${data.stats?.alerts || 0}</strong>
+                        <br>Alerts
+                    </div>
+                </div>
+            `;
+
+            if (data.analyzed_file) {
+                html += `
+                    <h4>📥 Download Results</h4>
+                    <div style="background: #f1f8e9; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                        <button onclick="downloadFile('${data.analyzed_file}')" class="btn-success">
+                            📄 Download Analyzed File
+                        </button>
+                        <p style="margin: 10px 0 0 0; font-size: 14px; color: #666;">
+                            File: ${data.analyzed_file}
+                        </p>
+                    </div>
+                `;
+            }
+
+            // Show sample results if available
+            if (data.rows && data.rows.length > 0) {
+                html += `
+                    <h4>📋 Sample Results (First 3 entries)</h4>
+                    <div style="background: white; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                `;
+                
+                for (let i = 0; i < Math.min(3, data.rows.length); i++) {
+                    const row = data.rows[i];
+                    html += `
+                        <div style="border-left: 4px solid #007bff; padding: 10px; margin: 10px 0; background: #f8f9fa;">
+                            <p><strong>Student:</strong> ${row.student_id || 'N/A'}</p>
+                            <p><strong>Feedback:</strong> "${row.feedback || 'N/A'}"</p>
+                            <p><strong>Sentiment:</strong> <span style="color: ${getSentimentColor(row.sentiment)}">${row.sentiment || 'N/A'}</span></p>
+                            <p><strong>Category:</strong> ${row.category || 'N/A'}</p>
+                            ${row.suggestion ? `<p><strong>Suggestion:</strong> ${row.suggestion}</p>` : ''}
+                            ${row.alert ? `<p><strong>⚠️ Alert:</strong> This feedback requires attention</p>` : ''}
+                        </div>
+                    `;
+                }
+                html += `</div>`;
+            }
+
+            contentDiv.innerHTML = html;
+            resultsDiv.style.display = 'block';
+        }
+
+        // Get sentiment color
+        function getSentimentColor(sentiment) {
+            switch(sentiment?.toUpperCase()) {
+                case 'POSITIVE': return '#388e3c';
+                case 'NEGATIVE': return '#d32f2f';
+                case 'NEUTRAL': return '#f57c00';
+                default: return '#666';
+            }
+        }
+
+        // Download file function
+        function downloadFile(filename) {
+            const url = `${backendUrl}/api/download-analyzed?file=${encodeURIComponent(filename)}`;
+            window.open(url, '_blank');
+            showStatus('✅ Download started!', 'success');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+================================================================================
+                    GEMINI API KEY SETUP INSTRUCTIONS
+================================================================================
+
+📋 WHAT YOU NEED TO DO:
+
+1. GET YOUR API KEY
+   ├─ Visit: https://makersuite.google.com/app/apikey
+   ├─ Sign in with your Google account
+   ├─ Click "Create API Key"
+   └─ Copy the generated key (looks like: AIzaSyXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX)
+
+2. SET THE API KEY
+   
+   METHOD 1 - Use the Setup Script (EASIEST):
+   ├─ Double-click: set_api_key.bat
+   ├─ Paste your API key when prompted
+   └─ Press Enter
+
+   METHOD 2 - Edit .env File Manually:
+   ├─ Open the file: .env
+   ├─ Find the line: GOOGLE_API_KEY=your_api_key_here
+   ├─ Replace with: GOOGLE_API_KEY=AIzaSyXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+   └─ Save the file
+
+3. RESTART BACKEND
+   ├─ Stop the backend server (Ctrl+C if running)
+   ├─ Start it again: python backend/app.py
+   └─ Look for: ✓ Gemini API key loaded successfully
+
+================================================================================
+
+✅ VERIFICATION:
+
+When backend starts, you should see:
+  ✓ Successfully imported analyze_feedback_csv from nlp_test.py
+  ✓ Gemini API key loaded successfully  ← This confirms it's working!
+
+If you see:
+  ⚠️  WARNING: Gemini API key not configured!
+  → Go back to Step 2 and check your .env file
+
+================================================================================
+
+🎯 WHAT THIS ENABLES:
+
+With the API key configured, you'll get:
+  ✅ AI-generated summaries of all feedback
+  ✅ Intelligent insights about student sentiment
+  ✅ Actionable recommendations for improvement
+  ✅ Context-aware analysis of feedback patterns
+
+Without the API key:
+  ⚠️  You'll see a generic summary message
+  ⚠️  No AI-powered insights
+
+================================================================================
+
+📊 EXAMPLE OUTPUT:
+
+Before (no API key):
+  "Analysis completed successfully. The feedback has been processed 
+   and categorized."
+
+After (with API key):
+  "Students appreciate the clean and peaceful campus environment, along 
+   with some helpful staff and academic initiatives like informative 
+   workshops. However, key areas for improvement include slow 
+   administrative response times, uncoordinated internship processes, 
+   and limited placement opportunities."
+
+================================================================================
+
+💰 COST: FREE!
+
+  • 60 requests per minute
+  • 1,500 requests per day
+  • 1 million tokens per month
+  
+  Perfect for educational use!
+
+================================================================================
+
+🔒 SECURITY:
+
+  ✅ .env file is in .gitignore (won't be committed to Git)
+  ✅ Keep your API key private
+  ✅ Never share your .env file
+  ✅ Use .env.example for sharing configuration templates
+
+================================================================================
+
+📚 MORE HELP:
+
+  • Detailed Guide: GEMINI_API_SETUP.md
+  • Quick Start: QUICK_START_API.md
+  • API Documentation: https://ai.google.dev/docs
+
+================================================================================
+
+🎉 READY TO GO!
+
+Once you've set your API key and restarted the backend:
+  1. Open the web interface: http://localhost:4010
+  2. Upload a feedback file
+  3. See the AI-generated summary in action!
+
+================================================================================

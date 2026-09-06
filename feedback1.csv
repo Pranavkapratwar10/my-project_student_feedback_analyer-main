@@ -1,0 +1,21 @@
+StudentID,Name,RollNo,Course,Department,Year,Section,Email,Phone,Gender,Age,Attendance,MidTermScore,FinalScore,ProjectScore,LabScore,OverallGrade,Instructor,Semester,Campus,Feedback,Extra1,Extra2,Extra3,Extra4,Extra5,Extra6,Extra7,Extra8,Extra9
+S001,Student_1,R001,BSc CS,Commerce,3,B,student1@college.edu,9999999901,Female,22,63,79,81,61,93,D,Prof. Smith,Semester1,West,Labs are well-equipped and helpful.,4,8,3,9,7,2,6,8,5
+S002,Student_2,R002,BSc CS,Management,3,A,student2@college.edu,9999999902,Male,23,89,86,70,68,88,A,Prof. Smith,Semester1,West,Discrimination issues noticed in lab sessions.,7,3,9,10,5,7,7,4,2
+S003,Student_3,R003,BCom,CS,2,A,student3@college.edu,9999999903,Female,24,76,80,91,95,54,D,Prof. Smith,Semester1,East,Course content is very useful and relevant.,6,4,2,4,6,8,8,2,3
+S004,Student_4,R004,BCom,Management,3,B,student4@college.edu,9999999904,Male,19,71,76,90,93,48,C,Prof. Smith,Semester1,West,Classroom is noisy and fans are not working.,8,9,2,9,2,9,10,5,7
+S005,Student_5,R005,BCom,Management,4,B,student5@college.edu,9999999905,Male,18,84,69,45,57,69,D,Prof. Johnson,Semester2,Main,There is harassment happening in class.,2,4,5,10,8,4,10,8,1
+S006,Student_6,R006,BSc CS,CS,4,A,student6@college.edu,9999999906,Female,25,88,79,61,94,84,C,Prof. Smith,Semester2,Main,Course content is very useful and relevant.,3,7,5,3,1,4,10,8,1
+S007,Student_7,R007,BBA,Management,1,B,student7@college.edu,9999999907,Male,19,63,52,54,71,91,A,Prof. Johnson,Semester2,East,There is harassment happening in class.,9,7,1,9,1,5,10,5,6
+S008,Student_8,R008,BSc CS,Commerce,4,A,student8@college.edu,9999999908,Female,24,66,66,89,74,71,D,Prof. Smith,Semester1,Main,Teacher provides extra support when needed.,10,2,7,10,6,5,2,9,4
+S009,Student_9,R009,BSc CS,CS,1,B,student9@college.edu,9999999909,Female,25,60,78,100,88,45,B,Prof. Johnson,Semester1,West,Professor is rude when asked questions.,7,5,3,4,7,1,2,6,5
+S010,Student_10,R010,BCom,Management,1,C,student10@college.edu,9999999910,Male,23,85,68,46,100,83,D,Prof. Smith,Semester1,East,Classroom is noisy and fans are not working.,4,7,4,10,1,5,3,2,7
+S011,Student_11,R011,BSc CS,Commerce,4,B,student11@college.edu,9999999911,Male,18,98,61,91,71,95,A,Prof. Lee,Semester1,East,The teacher explains the topic very clearly.,1,7,3,7,7,1,7,10,2
+S012,Student_12,R012,BSc CS,Commerce,4,A,student12@college.edu,9999999912,Male,21,65,83,59,81,57,B,Prof. Smith,Semester1,East,Course syllabus feels outdated and hard to follow.,5,2,8,6,6,7,8,4,9
+S013,Student_13,R013,BBA,Management,4,A,student13@college.edu,9999999913,Female,19,71,86,62,100,70,C,Prof. Johnson,Semester1,West,There is harassment happening in class.,5,8,1,8,8,1,7,8,10
+S014,Student_14,R014,BSc CS,Commerce,2,A,student14@college.edu,9999999914,Male,25,80,53,74,90,79,D,Prof. Lee,Semester2,West,The teacher explains the topic very clearly.,1,2,8,2,8,2,10,6,2
+S015,Student_15,R015,BCom,Management,2,C,student15@college.edu,9999999915,Female,19,64,97,84,41,66,A,Prof. Lee,Semester1,East,Classroom is noisy and fans are not working.,5,4,4,8,2,7,5,7,4
+S016,Student_16,R016,BCom,CS,3,A,student16@college.edu,9999999916,Female,19,66,71,70,50,100,C,Prof. Johnson,Semester2,West,Course syllabus feels outdated and hard to follow.,4,9,8,6,9,9,2,4,1
+S017,Student_17,R017,BBA,Management,1,A,student17@college.edu,9999999917,Female,25,85,92,84,48,93,B,Prof. Johnson,Semester2,West,Discrimination issues noticed in lab sessions.,9,6,7,2,2,3,5,7,3
+S018,Student_18,R018,BCom,Management,4,B,student18@college.edu,9999999918,Male,19,89,69,92,49,78,C,Prof. Johnson,Semester2,West,Discrimination issues noticed in lab sessions.,5,5,2,10,1,3,4,4,7
+S019,Student_19,R019,BSc CS,Commerce,2,B,student19@college.edu,9999999919,Male,18,86,60,60,88,68,D,Prof. Johnson,Semester2,Main,Course content is very useful and relevant.,8,1,8,6,10,9,6,7,10
+S020,Student_20,R020,BSc CS,CS,3,A,student20@college.edu,9999999920,Female,22,77,58,67,50,60,B,Prof. Lee,Semester1,West,Course content is very useful and relevant.,5,9,9,4,7,1,6,4,9

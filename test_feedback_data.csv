@@ -1,0 +1,21 @@
+Feedback,Category,Sentiment
+"The professor explains concepts very clearly and is always willing to help students. Best teacher I've had!",Teaching Quality,Positive
+"This damn course is too difficult and the professor doesn't give a shit about students struggling.",Teaching Quality,Negative
+"The lectures are okay but could use more real-world examples.",Course Content,Neutral
+"Excellent teaching methods! The interactive sessions really help us understand complex topics better.",Teaching Quality,Positive
+"The professor is rude and dismissive. Absolutely terrible behavior towards students.",Behavior,Negative
+"Lab equipment is outdated and half of it doesn't even work properly.",Infrastructure,Negative
+"Great communication! The professor responds to emails quickly and provides detailed feedback on assignments.",Communication,Positive
+"I hate this fucking class. The workload is insane and unreasonable.",Course Content,Negative
+"The course material is well-organized and the syllabus is clear.",Course Content,Positive
+"Professor shows favoritism to certain students. This is bullshit and unfair to the rest of us.",Behavior,Negative
+"The classroom is too small and cramped. We need better facilities.",Infrastructure,Neutral
+"Amazing professor! Very knowledgeable and passionate about the subject. Makes learning enjoyable.",Teaching Quality,Positive
+"The professor is always late to class and wastes our time. Completely unprofessional.",Behavior,Negative
+"Good course overall but the textbook is expensive and not very helpful.",Course Content,Neutral
+"The professor uses offensive language in class and makes inappropriate jokes. This needs to stop immediately.",Behavior,Negative
+"Office hours are very helpful. The professor takes time to explain difficult concepts patiently.",Communication,Positive
+"This stupid assignment makes no sense. The instructions are confusing as hell.",Course Content,Negative
+"The online learning platform works well and all materials are easily accessible.",Infrastructure,Positive
+"Decent professor but sometimes goes off-topic during lectures.",Teaching Quality,Neutral
+"The professor threatened to fail students who miss more than 3 classes. This is harassment and abuse of power.",Behavior,Negative

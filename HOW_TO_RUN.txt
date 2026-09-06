@@ -1,0 +1,69 @@
+========================================
+HOW TO RUN THIS PROJECT
+========================================
+
+CURRENT STATUS: Python and Node.js are NOT installed on your system.
+
+REQUIRED SOFTWARE:
+==================
+
+1. PYTHON (for Backend Server)
+   Download: https://www.python.org/downloads/
+   - Click the big yellow "Download Python" button
+   - Run the installer
+   - ✓ CHECK "Add Python to PATH" (IMPORTANT!)
+   - Click "Install Now"
+
+2. NODE.JS (for Frontend Server)
+   Download: https://nodejs.org/
+   - Download the LTS version (left button)
+   - Run the installer with default settings
+
+3. RESTART YOUR COMPUTER after installing both
+
+
+AFTER INSTALLATION:
+===================
+
+Open Command Prompt in this folder and run:
+
+   START_AUTH_SYSTEM.bat
+
+This will:
+- Install all dependencies automatically
+- Start the backend server on http://localhost:5002
+- Start the frontend server on http://localhost:4010
+- Open your browser automatically
+
+
+MANUAL START (Alternative):
+============================
+
+Backend:
+   cd backend
+   venv\Scripts\activate
+   python app.py
+
+Frontend (in new terminal):
+   cd frontend
+   npm start
+
+
+TROUBLESHOOTING:
+================
+
+If you see "Python was not found":
+   → Python is not installed or not in PATH
+   → Reinstall Python and check "Add to PATH"
+
+If you see "npm is not recognized":
+   → Node.js is not installed
+   → Install Node.js from nodejs.org
+
+If servers don't start:
+   → Make sure both Python AND Node.js are installed
+   → Restart your computer after installation
+   → Run START_AUTH_SYSTEM.bat
+
+
+========================================
